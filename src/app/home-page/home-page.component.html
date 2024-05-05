@@ -1,0 +1,30 @@
+<form [formGroup]="suggestForm" (ngSubmit)="publishToBlockchain()">
+  <h2>Store document from ipfs to Ethereum</h2>
+
+  <label class="required" for="file-name">File name</label>
+  <mat-form-field appearance="outline">
+    <input id="file-name" matInput placeholder="Enter file name" formControlName="fileName">
+    <mat-error *ngIf="suggestForm.get('fileName')?.invalid && (suggestForm.get('fileName')?.dirty || suggestForm.get('fileName')?.touched)">
+      File name is required
+    </mat-error>
+  </mat-form-field>
+
+  <label for="ipfs-hash">ipfs hash</label>
+  <mat-form-field appearance="outline">
+    <input id="ipfs-hash" matInput placeholder="Enter hash" formControlName="ipfsHash">
+  </mat-form-field>
+
+  <label class="required" for="website">Url (IPFS)</label>
+  <mat-form-field appearance="outline">
+    <input id="website" matInput placeholder="Enter ipfs url" formControlName="url">
+    <mat-error *ngIf="suggestForm.get('url')?.invalid && (suggestForm.get('url')?.dirty || suggestForm.get('url')?.touched)">
+      Website is required
+    </mat-error>
+    <mat-error *ngIf="suggestForm.get('url')?.hasError('pattern')">
+      Enter a valid website URL
+    </mat-error>
+  </mat-form-field>
+
+  <button mat-flat-button color="accent"  (click)="suggestForm.reset()">Cancel</button>
+  <button mat-flat-button color="primary" [disabled]="suggestForm.invalid">Submit to blockchain</button>
+</form>

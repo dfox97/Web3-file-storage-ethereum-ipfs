@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<testsuite name="Chrome 124.0.0.0 (Windows 10)" package="" timestamp="2024-04-27T21:10:40" id="0" hostname="Danny" tests="6" errors="0" failures="0" time="0.018">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"/>
+  </properties>
+  <testcase name="BackendService should be created" time="0.018" classname="Chrome_124_0_0_0_(Windows_10).BackendService"/>
+  <testcase name="AppComponent should create the app" time="0" classname="Chrome_124_0_0_0_(Windows_10).AppComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="AppComponent should have the 'login-frontend' title" time="0" classname="Chrome_124_0_0_0_(Windows_10).AppComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="AppComponent should render title" time="0" classname="Chrome_124_0_0_0_(Windows_10).AppComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="HomePageComponent should create" time="0" classname="Chrome_124_0_0_0_(Windows_10).HomePageComponent">
+    <skipped/>
+  </testcase>
+  <testcase name="LoginComponent should create" time="0" classname="Chrome_124_0_0_0_(Windows_10).LoginComponent">
+    <skipped/>
+  </testcase>
+  <system-out>
+    <![CDATA[
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>

@@ -1,0 +1,14 @@
+
+{
+  "name": "Project",
+  "version": "localhost",
+  "environment": "dev",
+  "urls": {
+    "app": "http://localhost:4200",
+    "backend": {
+      "base": "http://localhost:3000",
+      "realtime": "/realtime"
+    }
+  }
+}
+

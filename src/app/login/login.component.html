@@ -1,0 +1,14 @@
+<div class="container">
+  <ng-container *ngIf="userAddress; else loginSection">
+    <div>
+      <span class="userAddress" title="{{ userAddress }}">ETH Address: {{ truncateAddress(userAddress) }}</span>
+      <button class="logoutButton" (click)="onLogout()">Logout</button>
+    </div>
+  </ng-container>
+  <ng-template #loginSection>
+    <div class="loginWrapper">
+      <img class="logo" src="../../assets/MetaMask.png" alt="metamask" />
+      <button class="loginButton" (click)="login()">Login with MetaMask</button>
+    </div>
+  </ng-template>
+</div>

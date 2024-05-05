@@ -1,0 +1,92 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "project": "./tsconfig.json"
+      },
+      "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ],
+        // "jsdoc/newline-after-description": "off",
+        // "@typescript-eslint/no-confusing-non-null-assertion": "warn",
+        // "@typescript-eslint/no-var-requires": "error",
+        // "@typescript-eslint/strict-boolean-expressions": "off",
+        "max-len": [
+          "error",
+          {
+            "code": 180
+          }
+        ],
+        "indent": [
+          "error",
+          2,
+          {
+            "SwitchCase": 1,
+            "ignoredNodes": [
+              "PropertyDefinition"
+            ]
+          }
+        ],
+        // "key-spacing": [
+        //   "error",
+        //   {
+        //     "beforeColon": false,
+        //     "afterColon": true
+        //   }
+        // ],
+        // "keyword-spacing": [
+        //   "error",
+        //   {
+        //     "before": true,
+        //     "after": true
+        //   }
+        // ],
+        // "padding-line-between-statements": [
+        //   "error",
+        //   {
+        //     "blankLine": "always",
+        //     "prev": "*",
+        //     "next": "return"
+        //   }
+        // ]
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended",
+        "plugin:@angular-eslint/template/accessibility"
+      ],
+      "rules": {}
+    }
+  ]
+}
