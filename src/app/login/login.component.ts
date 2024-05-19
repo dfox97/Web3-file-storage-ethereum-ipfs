@@ -1,6 +1,5 @@
-import { Web3 } from './../../../node_modules/web3/src/web3';
 import { Component, OnInit, inject } from '@angular/core';
-import { Web3Service } from './service/web-3.service';
+import { Web3Service } from '../services/web3/web3-connection.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -11,36 +10,22 @@ import { CommonModule } from '@angular/common';
   standalone: true
 })
 export class LoginComponent {
-  public userAddress: string | undefined = undefined;
+  public userAddress: string | undefined;
 
   readonly #web3Service = inject(Web3Service);
 
-  async initializeWeb3() {
-    try {
-      const web3 = await this.#web3Service.initializeWeb3();
-      console.log("Web3 initialized:", web3);
-      this.userAddress = web3?.eth?.defaultAccount;
-    } catch (error) {
-      console.error("Error initializing Web3:", error);
-      // Handle error here, such as displaying a message to the user
-    }
-  }
-
-  async login() {
-    try {
-      await this.#web3Service.initializeWeb3();
-      // Web3 is already initialized if MetaMask is connected
-      console.log("User logged in with MetaMask");
-      // Additional login logic or redirect to dashboard
-    } catch (error) {
-      console.error("Error logging in with MetaMask:", error);
-      // Handle error here, such as displaying a message to the user
-    }
+  login() {
+    this.#web3Service.initializeWeb3().then(() => {
+      this.userAddress = this.#web3Service.accountSig();
+      console.log("🚀 ~ LoginComponent ~ this.#web3Service.initializeWeb3 ~ userAddress:", this.userAddress)
+    }).catch((error) => {
+      console.error('Error initializing Web3:', error);
+    });
   }
 
   onLogout() {
-    // Implement logout logic here
-    console.log("User logged out");
+    this.userAddress = undefined;
+    this.#web3Service.logOut();
   }
 
   truncateAddress(address: string | undefined): string {

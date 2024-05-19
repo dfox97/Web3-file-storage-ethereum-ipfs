@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { HomePageComponent } from './home-page/home-page.component';
 import { LoginComponent } from './login/login.component';
+import { DocUploadFormComponent } from './doc-upload-form/doc-upload-form.component';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +11,7 @@ import { LoginComponent } from './login/login.component';
     CommonModule,
     RouterOutlet,
     LoginComponent,
-    HomePageComponent
+    DocUploadFormComponent
   ],
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
