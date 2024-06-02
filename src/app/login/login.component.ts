@@ -1,6 +1,7 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { Web3Service } from '../services/web3/web3-connection.service';
 import { CommonModule } from '@angular/common';
+import { EthDocUploaderService } from '../services/web3/eth-doc-uploader.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class LoginComponent {
   public userAddress: string | undefined;
 
-  readonly #web3Service = inject(Web3Service);
+  readonly #web3Service = inject(EthDocUploaderService);
 
   async login() {
     await this.#web3Service.initializeWeb3();
