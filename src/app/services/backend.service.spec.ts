@@ -5,7 +5,7 @@ import { VersionService } from './config.service';
 import { anything, instance, mock, when } from 'ts-mockito';
 import { TestBed } from '@angular/core/testing';
 
-fdescribe('BackendService', () => {
+describe('BackendService', () => {
   let service: BackendService;
 
   let httpClient: HttpClient;

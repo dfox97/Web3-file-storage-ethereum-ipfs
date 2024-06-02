@@ -1,28 +1,57 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
-
+import { classWithProviders } from 'src/utils/testing';
 import { ViewerComponent } from './viewer.component';
+import { EthDocUploaderService, FileInfo } from '../services/web3/eth-doc-uploader.service';
+import { anyNumber, instance, mock, when } from 'ts-mockito';
+import { fakeAsync, flushMicrotasks } from '@angular/core/testing';
 
 describe('ViewerComponent', () => {
   let component: ViewerComponent;
-  let fixture: ComponentFixture<ViewerComponent>;
+  let mockEthDocUploaderService: EthDocUploaderService;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ViewerComponent ]
-    })
-    .compileComponents();
-  }));
+  const mockData: FileInfo = {
+    fileName: 'test',
+    hash: '1234',
+    url: 'http://example.com',
+  }
+
+  const mockEvent = {
+    key: '1',
+    stopPropagation: () => undefined,
+  } as KeyboardEvent;
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewerComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
+    mockEthDocUploaderService = mock(EthDocUploaderService);
+
+    when(mockEthDocUploaderService.getFile(anyNumber())).thenResolve(mockData);
+
+    component = classWithProviders({
+      token: ViewerComponent,
+      providers: [{
+        provide: EthDocUploaderService, useValue: instance(mockEthDocUploaderService) }
+      ],
+    })
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('setIndex', () => {
+    it('should set the index', () => {
+      component.setIndex(mockEvent);
+
+      expect(component.index()).toBe(1);
+    });
+  });
+
+
+  describe('getFileInfo', () => {
+    it('should set the data', fakeAsync(() => {
+      void component.getFileInfo(0);
+
+      flushMicrotasks();
+
+      expect(component.data()).toEqual(mockData);
+    }));
   });
 });

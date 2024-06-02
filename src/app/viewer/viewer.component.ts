@@ -1,7 +1,6 @@
-import { Component, NgModule, OnInit, inject, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { EthDocUploaderService, FileInfo } from '../services/web3/eth-doc-uploader.service';
-import { CommonModule, NgClass } from '@angular/common';
-import { NgModel } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-viewer',
@@ -11,12 +10,17 @@ import { NgModel } from '@angular/forms';
   imports: [CommonModule],
 })
 export class ViewerComponent {
-  public data = signal<FileInfo | null>(null);
-  index = 0;
+  public readonly data = signal<FileInfo | null>(null);
+  public readonly index = signal<number>(0);
+
   private readonly eth3Service = inject(EthDocUploaderService);
 
+  setIndex(ev: KeyboardEvent) {
+    ev.stopPropagation();
 
-  //TODO: Make reactive form and get index from input
+    this.index.set(Number(ev.key));
+  }
+
   async getFileInfo(index: number) {
     const data = await this.eth3Service.getFile(index);
     this.data.set(data);

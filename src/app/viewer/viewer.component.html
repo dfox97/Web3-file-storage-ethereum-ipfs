@@ -1,7 +1,7 @@
 <!-- create input field and button -->
 <div class="input-box">
-  <input type="text" placeholder="Enter index">
-  <button (click)="getFileInfo(0)">Search by index</button>
+  <input type="number" (keydown)="setIndex($event)" placeholder="Enter index">
+  <button (click)="getFileInfo(index())">Search by index</button>
 </div>
 
 
