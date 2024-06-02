@@ -5,6 +5,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { EthDocUploaderService } from '../services/web3/eth-doc-uploader.service';
+import { Web3Service } from '../services/web3/web3-connection.service';
 
 @Component({
   selector: 'app-doc-upload-form',
@@ -37,7 +38,13 @@ export class DocUploadFormComponent {
     if (this.suggestForm.valid) {
       // Process the form submission here, e.g., calling an API
 
-      //TODO: FIX UNDEFINED ACCOUNT SIGN AND UNDEFINED CONTRACT ADDRESS
+      // //TODO: FIX UNDEFINED ACCOUNT SIGN AND UNDEFINED CONTRACT ADDRESS
+      // this.#ethDocUploaderService.getFile(0).then((file) => {
+      //   console.log('File from blockchain:', file);
+      // });
+
+      console.log('Form submitted:', this.#ethDocUploaderService.contractSig());
+
       this.#ethDocUploaderService.getFile(0).then((file) => {
         console.log('File from blockchain:', file);
       });

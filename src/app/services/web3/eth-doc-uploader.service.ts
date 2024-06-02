@@ -1,7 +1,19 @@
 import { Injectable } from '@angular/core';
 import { Web3Service } from './web3-connection.service';
 
-type FileInfo = { fileName: string, hash: string, url: string };
+interface FileResponse {
+  "0": string; // fileName
+  "1": string; // hash
+  "2": string; // url
+  "__length__": number;
+}
+
+
+export interface FileInfo {
+  fileName: string;
+  hash: string;
+  url: string;
+}
 
 interface IDocUploderContract {
   add: (fileName: string, hash: string, url: string) => Promise<void>;
@@ -15,7 +27,6 @@ interface IDocUploderContract {
   providedIn: 'root'
 })
 export class EthDocUploaderService extends Web3Service implements IDocUploderContract {
-  public account = this.accountSig();
 
   async add(fileName: string, hash: string, url: string): Promise<void> {
     if (!this.account) throw new Error('Account not found')
@@ -28,18 +39,23 @@ export class EthDocUploaderService extends Web3Service implements IDocUploderCon
       throw new Error('Error adding file to blockchain');
     }
   }
-
   async getFile(index: number): Promise<FileInfo> {
     if (!this.contract) throw new Error('Contract not found');
 
     try {
-      const [fileName, hash, url] = await this.contract.methods.getFile(index).call();
-      return { fileName, hash, url };
+      const result = await this.contract.methods.getFile(index).call<FileResponse>();
+
+      return {
+        fileName: result[0],
+        hash: result[1],
+        url: result[2],
+      };
     } catch (error) {
       console.error('Error getting file from blockchain:', error);
       throw new Error('Error getting file from blockchain');
     }
   }
+
 
   async getHash(): Promise<string> {
     if (!this.account) throw new Error('Account not found')

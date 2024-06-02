@@ -14,13 +14,13 @@ export class LoginComponent {
 
   readonly #web3Service = inject(Web3Service);
 
-  login() {
-    this.#web3Service.initializeWeb3().then(() => {
-      this.userAddress = this.#web3Service.accountSig();
-      console.log("🚀 ~ LoginComponent ~ this.#web3Service.initializeWeb3 ~ userAddress:", this.userAddress)
-    }).catch((error) => {
-      console.error('Error initializing Web3:', error);
-    });
+  async login() {
+    await this.#web3Service.initializeWeb3();
+    this.userAddress = this.#web3Service.accountSig();
+    const contract = this.#web3Service.contractSig();
+
+    this.#web3Service.contractSig.set(contract);
+
   }
 
   onLogout() {
