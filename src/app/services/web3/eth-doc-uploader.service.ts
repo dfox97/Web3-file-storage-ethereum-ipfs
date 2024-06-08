@@ -23,6 +23,8 @@ interface IDocUploderContract {
   verifyDocument: (index: number, hashToVerify: string) => Promise<boolean>;
 }
 
+
+//TODO: Make this a seperate class and web3 service its own class.
 @Injectable({
   providedIn: 'root'
 })

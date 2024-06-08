@@ -1,7 +1,7 @@
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import Web3, { Contract } from 'web3';
 import { abiKey } from './contract/abi';
-import { BehaviorSubject } from 'rxjs';
+import { toObservable } from '@angular/core/rxjs-interop';
 
 declare let window: any;
 
@@ -19,6 +19,7 @@ type ContractAbi = typeof abiKey;
 export class Web3Service implements IWeb3 {
   //user web3 instance
   public accountSig = signal<string | undefined>(undefined);
+  public account$ = toObservable(this.accountSig);
   public contractSig = signal<Contract<ContractAbi> | undefined>(undefined);
 
   protected _web3 = new Web3('https://rpc2.sepolia.org');

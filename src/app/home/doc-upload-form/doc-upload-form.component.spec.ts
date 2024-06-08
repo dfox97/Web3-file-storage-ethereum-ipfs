@@ -2,7 +2,7 @@ import { anything, instance, mock, when } from 'ts-mockito';
 import { classWithProviders } from 'src/utils/testing';
 import { DocUploadFormComponent } from './doc-upload-form.component';
 import { FormBuilder, NonNullableFormBuilder } from '@angular/forms';
-import { EthDocUploaderService } from '../services/web3/eth-doc-uploader.service';
+import { EthDocUploaderService } from '../../services/web3/eth-doc-uploader.service';
 
 describe('DocUploadFormComponent', () => {
   let component: DocUploadFormComponent;
@@ -20,8 +20,8 @@ describe('DocUploadFormComponent', () => {
     component = classWithProviders({
       token: DocUploadFormComponent,
       providers: [
-        { provide: FormBuilder, useValue: instance(mockFormBuilder)},
-        { provide: EthDocUploaderService, useValue: instance(mockEthUploaderService)}
+        { provide: FormBuilder, useValue: instance(mockFormBuilder) },
+        { provide: EthDocUploaderService, useValue: instance(mockEthUploaderService) }
       ]
     });
   });
