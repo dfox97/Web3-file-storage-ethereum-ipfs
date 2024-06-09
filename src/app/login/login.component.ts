@@ -1,6 +1,6 @@
 import { Component, inject } from '@angular/core';
-import { EthDocUploaderService } from '../services/web3/eth-doc-uploader.service';
 import { Router } from '@angular/router';
+import { Web3Service } from '../services/web3/web3-connection.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   standalone: true
 })
 export class LoginComponent {
-  readonly #web3Service = inject(EthDocUploaderService);
+  readonly #web3Service = inject(Web3Service);
   readonly #router = inject(Router);
 
   async login() {

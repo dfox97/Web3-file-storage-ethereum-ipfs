@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Web3Service } from './web3-connection.service';
 
 interface FileResponse {
@@ -28,7 +28,16 @@ interface IDocUploderContract {
 @Injectable({
   providedIn: 'root'
 })
-export class EthDocUploaderService extends Web3Service implements IDocUploderContract {
+export class EthDocUploaderService implements IDocUploderContract {
+  #web3Service = inject(Web3Service);
+
+  private get account() {
+    return this.#web3Service.account;
+  }
+
+  private get contract() {
+    return this.#web3Service.contract;
+  }
 
   async add(fileName: string, hash: string, url: string): Promise<void> {
     if (!this.account) throw new Error('Account not found')

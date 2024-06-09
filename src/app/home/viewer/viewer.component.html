@@ -1,0 +1,23 @@
+<div class="input-box">
+  <h2>Document Uploader</h2>
+  <form>
+    <mat-form-field appearance="outline" floatLabel="always">
+      <input matInput type="number" (keydown)="setIndex($event)" placeholder="Enter index" >
+    </mat-form-field>
+    <button mat-flat-button type="button" (click)="getFileInfo(index())">Search by index</button>
+  </form>
+</div>
+
+<div class="display-box">
+  <h2>Contract Data</h2>
+  <div *ngIf="data(); else noData">
+    <p>File Name: {{ data()?.fileName }}</p>
+    <p>IPFS Hash: {{ data()?.hash }}</p>
+    <p>Url: {{ data()?.url }}</p>
+  </div>
+</div>
+
+<ng-template #noData>
+  <p>No data available</p>
+      <mat-error *ngIf="errorMessage">{{ errorMessage }}</mat-error>
+</ng-template>

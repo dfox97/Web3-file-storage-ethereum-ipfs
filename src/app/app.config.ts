@@ -5,13 +5,11 @@ import { routes } from './app-routing-module';
 import { AppConfigService } from './services/config.service';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
-
 export function appConfigInit(appConfigService: AppConfigService) {
   return () => {
     return appConfigService.load()
   };
 }
-
 
 export const appConfig: ApplicationConfig = {
   providers: [

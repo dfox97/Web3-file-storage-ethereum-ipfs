@@ -1,8 +1,8 @@
 import { classWithProviders } from 'src/utils/testing';
 import { ViewerComponent } from './viewer.component';
-import { EthDocUploaderService, FileInfo } from '../services/web3/eth-doc-uploader.service';
 import { anyNumber, instance, mock, when } from 'ts-mockito';
 import { fakeAsync, flushMicrotasks } from '@angular/core/testing';
+import { EthDocUploaderService, FileInfo } from 'src/app/services/web3/eth-doc-uploader.service';
 
 describe('ViewerComponent', () => {
   let component: ViewerComponent;

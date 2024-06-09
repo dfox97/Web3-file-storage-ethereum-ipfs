@@ -32,7 +32,6 @@ export class Web3Service implements IWeb3 {
     }
   }
 
-
   get web3(): Web3 {
     return this._web3;
   }

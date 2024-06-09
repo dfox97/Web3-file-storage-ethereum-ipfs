@@ -2,7 +2,7 @@
   <h2>Store document from ipfs to Ethereum</h2>
 
   <label class="required" for="file-name">File name</label>
-  <mat-form-field appearance="outline">
+  <mat-form-field appearance="outline" >
     <input id="file-name" matInput placeholder="Enter file name" formControlName="fileName">
     <mat-error *ngIf="suggestForm.get('fileName')?.invalid && (suggestForm.get('fileName')?.dirty || suggestForm.get('fileName')?.touched)">
       File name is required

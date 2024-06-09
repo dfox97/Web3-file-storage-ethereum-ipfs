@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
-import { ViewerComponent } from './viewer/viewer.component';
+import { ViewerComponent } from './home/viewer/viewer.component';
 
 @Component({
   selector: 'app-root',
